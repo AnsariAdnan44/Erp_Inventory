@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vendor Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+    <a href="index.html">Vendors</a>
+    <a href="po.html">Purchase Orders</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="report.html">Reports</a>
+</nav>
+
+<h2>Vendor Management</h2>
+
+<div class="form">
+    <input type="hidden" id="vendorId">
+    <input type="text" id="name" placeholder="Vendor Name">
+    <input type="text" id="phone" placeholder="Phone">
+    <input type="email" id="email" placeholder="Email">
+    <button onclick="saveVendor()">Save Vendor</button>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="vendorTable"></tbody>
+</table>
+
+<script src="script.js"></script>
+</body>
+</html>
