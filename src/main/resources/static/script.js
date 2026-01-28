@@ -14,8 +14,8 @@ function loadVendors() {
                         <td>${v.phone}</td>
                         <td>${v.email}</td>
                         <td>
-                            <button onclick="editVendor(${v.id}, '${v.name}', '${v.phone}', '${v.email}')">Edit</button>
-                            <button onclick="deleteVendor(${v.id})">Delete</button>
+                            <button class="btn" onclick="editVendor(${v.id}, '${v.name}', '${v.phone}', '${v.email}')">Edit</button>
+                            <button class="btn" onclick="deleteVendor(${v.id})">Delete</button>
                         </td>
                     </tr>
                 `;

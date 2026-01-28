@@ -105,6 +105,17 @@ function receiveGoods(id) {
         .then(() => loadPOs());
 }
 
+function receivePO(id) {
+    fetch(`http://localhost:8080/api/po/${id}/receive`, {
+        method: "POST"
+    })
+    .then(() => {
+        alert("Goods received!");
+        loadPOs();
+    });
+}
+
+
 // Initial load
 loadVendors();
 loadPOs();

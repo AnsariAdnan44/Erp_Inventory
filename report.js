@@ -1,33 +1,51 @@
 const API_URL = "http://localhost:8080/api/po";
 
 function loadReports() {
-    // Pending POs
+
+    // 🔶 Pending POs
     fetch(`${API_URL}/pending`)
         .then(res => res.json())
         .then(data => {
-            const pendingList = document.getElementById("pendingPOs");
-            pendingList.innerHTML = "";
+            const pendingTable = document.getElementById("pendingPOs");
+            pendingTable.innerHTML = "";
+
             data.forEach(po => {
-                const vendorName = po.vendor ? po.vendor.name : "Unknown Vendor";
-                pendingList.innerHTML += `<li>PO #${po.id} - Vendor: ${vendorName} - Status: ${po.status}</li>`;
+                pendingTable.innerHTML += `
+                    <tr>
+                        <td>${po.id}</td>
+                        <td>${po.vendor ? po.vendor.name : "N/A"}</td>
+                        <td>
+                            <span class="status status-created">${po.status}</span>
+                        </td>
+                    </tr>
+                `;
             });
         })
-        .catch(err => console.error("Error fetching pending POs:", err));
+        .catch(err => console.error("Pending PO error:", err));
 
-    // Approved POs
+
+    // 🔶 Approved POs
     fetch(`${API_URL}/approved`)
         .then(res => res.json())
         .then(data => {
-            const approvedList = document.getElementById("approvedPOs");
-            approvedList.innerHTML = "";
+            const approvedTable = document.getElementById("approvedPOs");
+            approvedTable.innerHTML = "";
+
             data.forEach(po => {
-                const vendorName = po.vendor ? po.vendor.name : "Unknown Vendor";
-                approvedList.innerHTML += `<li>PO #${po.id} - Vendor: ${vendorName} - Status: ${po.status}</li>`;
+                approvedTable.innerHTML += `
+                    <tr>
+                        <td>${po.id}</td>
+                        <td>${po.vendor ? po.vendor.name : "N/A"}</td>
+                        <td>
+                            <span class="status status-approved">${po.status}</span>
+                        </td>
+                    </tr>
+                `;
             });
         })
-        .catch(err => console.error("Error fetching approved POs:", err));
+        .catch(err => console.error("Approved PO error:", err));
 }
 
-// Refresh reports every 5 seconds (real-time)
+// 🔁 Auto refresh every 5 sec
 setInterval(loadReports, 5000);
-loadReports(); // initial load
+loadReports();

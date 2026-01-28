@@ -4,50 +4,77 @@
     <title>ERP - Inventory</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Segoe UI", Tahoma, sans-serif;
             margin: 0;
-            padding: 0;
             background-color: #f4f6f8;
         }
+
+        /* Navbar */
         nav {
-            background-color: #2c3e50;
-            padding: 10px 20px;
+            background: linear-gradient(90deg, #2c3e50, #34495e);
+            padding: 12px 24px;
+            display: flex;
+            gap: 20px;
         }
         nav a {
             color: white;
-            margin: 0 15px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
         nav a:hover {
-            text-decoration: underline;
+            opacity: 0.8;
+            border-bottom: 2px solid #1abc9c;
         }
+
+        /* Container */
         .container {
-            padding: 20px;
+            padding: 30px;
         }
+
         h2 {
             color: #2c3e50;
+            margin-bottom: 15px;
         }
+
+        /* Table */
         table {
-            width: 80%;
+            width: 90%;
             border-collapse: collapse;
-            margin-top: 10px;
-            background-color: white;
-            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        th, td {
-            padding: 10px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
+
         th {
             background-color: #34495e;
             color: white;
+            padding: 14px;
+            text-align: left;
         }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #eee;
+        }
+
         tr:hover {
-            background-color: #f1f1f1;
+            background-color: #f6f9fb;
         }
-        @media screen and (max-width: 768px) {
+
+        /* Quantity status */
+        .low {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .ok {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
             table {
                 width: 100%;
             }
@@ -65,17 +92,17 @@
 </nav>
 
 <div class="container">
-    <h2>Inventory</h2>
+    <h2>📦 Inventory Overview</h2>
 
     <table>
         <thead>
             <tr>
-                <th>Product</th>
-                <th>Quantity</th>
+                <th>Product Name</th>
+                <th>Available Quantity</th>
             </tr>
         </thead>
         <tbody id="inventoryTable">
-            <!-- Inventory items will be loaded here -->
+            <!-- Loaded dynamically -->
         </tbody>
     </table>
 </div>

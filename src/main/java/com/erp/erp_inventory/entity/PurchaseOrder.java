@@ -17,8 +17,9 @@ public class PurchaseOrder {
     @Enumerated(EnumType.STRING)
     private POStatus status;
 
-    @OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.ALL)
-    private List<PurchaseOrderItem> items;
+    @OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.ALL, orphanRemoval = true)
+private List<PurchaseOrderItem> items;
+
 
     // ---------- Getters & Setters ----------
 

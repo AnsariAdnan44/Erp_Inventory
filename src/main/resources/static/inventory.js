@@ -1,24 +1,45 @@
-const API_URL = "http://localhost:8080/api/inventory";
+const INVENTORY_API = "http://localhost:8080/api/inventory";
 
-// Load inventory on page load
 function loadInventory() {
-    fetch(API_URL)
-        .then(res => res.json())
+    fetch(INVENTORY_API)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to fetch inventory");
+            }
+            return response.json();
+        })
         .then(data => {
-            const table = document.getElementById("inventoryTable");
-            table.innerHTML = ""; // clear existing rows
+            const tableBody = document.getElementById("inventoryTable");
+            tableBody.innerHTML = "";
+
+            if (data.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="2" style="text-align:center;color:#999;">
+                            No inventory available
+                        </td>
+                    </tr>`;
+                return;
+            }
 
             data.forEach(item => {
-                table.innerHTML += `
+                const qtyClass = item.quantity < 10 ? "low" : "ok";
+
+                tableBody.innerHTML += `
                     <tr>
                         <td>${item.productName}</td>
-                        <td>${item.quantity}</td>
+                        <td class="${qtyClass}">
+                            ${item.quantity}
+                        </td>
                     </tr>
                 `;
             });
         })
-        .catch(err => console.error("Error fetching inventory:", err));
+        .catch(error => {
+            console.error("Inventory error:", error);
+        });
 }
 
-// Call loadInventory when page loads
+// auto-refresh every 5 seconds
+setInterval(loadInventory, 5000);
 loadInventory();

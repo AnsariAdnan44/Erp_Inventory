@@ -1,40 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendor Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Navbar -->
     <nav>
-    <a href="index.html">Vendors</a>
-    <a href="po.html">Purchase Orders</a>
-    <a href="inventory.html">Inventory</a>
-    <a href="report.html">Reports</a>
-</nav>
+        <div class="nav-container">
+            <div class="logo">ERP System</div>
+            <div class="nav-links">
+                <a href="index.html">Vendors</a>
+                <a href="po.html">Purchase Orders</a>
+                <a href="report.html">Reports</a>
+            </div>
+        </div>
+    </nav>
 
-<h2>Vendor Management</h2>
+    <div class="container">
+        <h1>Vendor Management</h1>
 
-<div class="form">
-    <input type="hidden" id="vendorId">
-    <input type="text" id="name" placeholder="Vendor Name">
-    <input type="text" id="phone" placeholder="Phone">
-    <input type="email" id="email" placeholder="Email">
-    <button onclick="saveVendor()">Save Vendor</button>
-</div>
+        <!-- Form Section -->
+        <div class="form-card">
+            <h2>Add / Edit Vendor</h2>
+            <input type="hidden" id="vendorId">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Vendor Name">
+            </div>
+            <div class="form-group">
+                <input type="text" id="phone" placeholder="Phone">
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email">
+            </div>
+            <button class="btn" onclick="saveVendor()">Save Vendor</button>
+        </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody id="vendorTable"></tbody>
-</table>
+        <!-- Vendor Table -->
+        <div class="table-card">
+            <h2>Existing Vendors</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="vendorTable"></tbody>
+            </table>
+        </div>
+    </div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
